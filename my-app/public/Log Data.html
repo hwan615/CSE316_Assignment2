@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  	<link href="app2.css" rel="stylesheet">
+    <title>Day Logger</title>
+  </head>
+  <body>
+
+    <!-- navbar -->
+    <div class="navbar">
+      <h2 class='logo'>Day Logger</h2>
+      <div class="navlist">
+        <a href="C:\Users\SAMSUNG\Desktop\CSE 316-web\HW1\HW1 Initial\Log Data.html">Log Data</a>
+        <a href="C:\Users\SAMSUNG\Desktop\CSE 316-web\HW1\HW1 Initial\index.html">Edit Questions</a>
+        <a href="https://blackboard.stonybrook.edu/webapps/blackboard/content/listContent.jsp?course_id=_1226262_1&content_id=_5827282_1&mode=reset">View Data</a>
+      </div>
+      <img class="photo" src="myphoto.jpg" alt="myPhoto">
+    </div>
+    
+    <div class="main">
+
+      <!-- box-top -->
+      <div class="boxtop" id="boxtop">
+        <button id="left" class="btn"><</button>
+        <!-- <div class="cal" id="calendar"></div> -->
+        <button id="right" class="btn">></button>
+      </div>
+
+      <form id="boxes" action="">
+        <!-- Example Box -->
+        <div id="box1" class="box box1">
+          <h4 class="title">Number of pushups</h4>
+          <br>
+          <input type="tex" class="under">
+        </div>
+
+        <div id="box2" class="box box2">
+          <h4 class="title">Had a long walk today</h4>
+          <br>
+          <div>
+            <input type="radio" name="f" class="true">
+            <label for="ra">True</label>
+            <input type="radio" name="f" class="false">
+            <label for="ra">False</label>
+          </div>
+        </div>
+
+        <div id="box3" class="box box3">
+          <h4 class="title">One great thing that happended today</h4>
+          <br>
+          <input type="tex" class="under2">
+        </div>
+
+        <button class="save-btn" type="submit">Save</button>
+      </form>
+
+    </div>
+    <script src="./main2.js"></script>
+  </body>
+</html>
