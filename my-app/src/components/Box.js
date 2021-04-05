@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
+import BoxDemo from "./BoxDemo";
 
 function Box() {
 
+    const [boxes, setBoxes] = useState([]);
+
+    const handleSubmit = (e) => {
+        const newBox = {
+            id: Date.now()
+        };
+        setBoxes(boxes.concat(newBox));
+    }
+
     return (
-        <div id="box1" className="box box1">
-            <input 
-            type="text"
-            id="question"
-            name="question" />
-                <br />
-                    <select name="option" id="option" value="">
-                        <option value="number">Number</option>
-                        <option value="text">Text</option>
-                        <option value="boolean">Boolean</option>
-                    </select>
-                    <button type="button" class="material-icons del">delete_outline</button>
+        <div>
+            <div className="boxtop">
+                <h2>Edit Questions:</h2>
+                <button id="plus-btn" className="material-icons plus" onClick={handleSubmit}>add_circle_outline</button>
+            </div>
+            <BoxList boxes={boxes} />
+        </div>
+    );
+}
+
+function BoxList(props) {
+    return (
+        <div>
+            {props.boxes.map(box => (
+                <div key={box.id}>
+                    <BoxDemo />
+                </div>
+
+            ))}
         </div>
     );
 }

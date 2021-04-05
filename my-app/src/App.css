@@ -179,6 +179,7 @@ form {
     width: 105px;
     height: 35px;
     margin-left: 15px;
+    margin-bottom: 10px;
     background-color: var(--actionBackgroundColor);
     border: none;
     border-radius: 8px;

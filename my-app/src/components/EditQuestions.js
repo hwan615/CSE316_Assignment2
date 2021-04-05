@@ -1,10 +1,16 @@
 import React from "react";
+import Box from "./Box";
 
 function EditQuestions() {
 
     return (
-        <h1>edit</h1>
-
+        <div className="main">
+            <form className="boxes">
+                <Box />
+                
+                <button className="save-btn" type="submit">Save</button>
+            </form>
+        </div>
     );
 }
 

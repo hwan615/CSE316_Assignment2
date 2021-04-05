@@ -1,0 +1,183 @@
+/* Global CSS Variables: https://www.w3schools.com/css/css3_variables.asp */
+/* Reference these in your CSS to get the same color as the mockups */
+:root {
+    --actionBackgroundColor: #f76b8a;
+    --actionTextColor: white;
+    --activeColor: #66bfbf;
+    --standardBackgroundColor: #fcfefe;
+    --alternativeBackgroundColor: #eaf6f6;
+    --standardTextColor: black;
+    --lightColor: lightgray;
+    --moderateColor: darkgray;
+  }
+  
+  body {
+    margin: 0;
+    background-color: var(--alternativeBackgroundColor);
+  }
+  
+  /* Navbar */
+  
+  .navbar {
+    background-color: var(--standardBackgroundColor);
+    width: 100vw;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navbar a {
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--standardTextColor);
+    text-align: center;
+  }
+  
+  .navbar a:hover {
+    color: var(--activeColor);
+    text-decoration: underline;
+  }
+  
+  .logo {
+    margin-left: 10px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 80px;
+    margin: 10px 0;
+    margin-right: 5%;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .logo {
+      display: none;
+    }
+    .navbar {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .navlist {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      width: 450px;
+    }
+    .photo {
+      margin-left: 10%;
+    }
+  }
+  
+  
+  /* main */
+  
+  .main {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0 5px;
+  }
+  form {
+    max-width: 600px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .boxtop {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    max-width: 600px;
+    width: 100%;
+    margin-top: 15px;
+  }
+  .btn {
+    background-color: var(--alternativeBackgroundColor);
+    border: none;
+    font-size: 30px;
+  }
+  .under {
+    border: 1px solid var(--moderateColor);
+    max-width: 200px;
+    width: 25%;
+    height: 40px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    margin-left: 5px;
+  }
+  .under2 {
+    border: 1px solid var(--moderateColor);
+    max-width: 550px;
+    width: 93%;
+    height: 40px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    margin-left: 5px;
+  }
+  .title {
+    margin-bottom: 5px;
+    margin-left: 5px;
+  }
+  .true {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  .false {
+    margin-left: 100px;
+  }
+  .cal {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    margin-top: 17px;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  .box {
+    background-color: var(--standardBackgroundColor);
+    border-radius: 15px;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .save-btn {
+    width: 105px;
+    height: 35px;
+    margin-left: 15px;
+    background-color: var(--actionBackgroundColor);
+    border: none;
+    border-radius: 8px;
+    color: var(--actionTextColor);
+  }
+  
+  
+  
+  
+  
+input:focus,
+select:focus,
+textarea:focus,
+button:focus  {
+  outline-color: var(--activeColor);
+}
+
+select {
+  border-color: var(--moderateColor);
+}
+
+input[type=text] {
+  border-color: var(--lightColor);
+}
+
+input[type=submit]:hover,
+input[type=button]:hover,
+button:hover {
+  transform: scale(1.1);
+}

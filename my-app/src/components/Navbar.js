@@ -3,7 +3,7 @@ import '../App.css';
 import myPhoto from './myphoto.jpg';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import EditQuestions from "./EditQuestions";
-import LogData from "./LogData";
+import LogDay from "./LogDay";
 
 function Navbar() {
 
@@ -13,14 +13,14 @@ function Navbar() {
         <div className="navbar">
           <h2 className="logo">Day Logger</h2>
           <div className="navlist">
-            <Link to="/Logdata">Log Data</Link>
+            <Link to="/Logday">Log Day</Link>
             <Link to="/">Edit Questions</Link>
             <Link to="/Data">View Data</Link>
           </div>
           <img className="photo" src={myPhoto} alt="myPhoto" />
         </div>
+        <Route path="/Logday" component={LogDay} />
         <Route exact path="/" component={EditQuestions} />
-        <Route path="/Logdata" component={LogData} />
 
       </div>
     </Router>
