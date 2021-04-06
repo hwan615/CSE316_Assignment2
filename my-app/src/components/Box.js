@@ -19,22 +19,21 @@ function Box() {
                 <h2>Edit Questions:</h2>
                 <button id="plus-btn" className="material-icons plus" onClick={handleSubmit}>add_circle_outline</button>
             </div>
-            <BoxList boxes={boxes} />
+            {/* <BoxList boxes={boxes} /> */}
+            <BoxDemo />
         </div>
     );
 }
 
-function BoxList(props) {
-    return (
-        <div>
-            {props.boxes.map(box => (
-                <div key={box.id}>
-                    <BoxDemo />
-                </div>
+// function BoxList(props) {
+//     return (
+//         <div>
+//             {props.boxes.map(box => (
+//                 <BoxDemo key={box.id}/>
 
-            ))}
-        </div>
-    );
-}
+//             ))}
+//         </div>
+//     );
+// }
 
 export default Box;
