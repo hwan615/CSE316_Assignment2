@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../App.css";
 
 function BoxDemo() {
 
+    const [contents, setContents] = useState('');
+    const [option, setOption] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (Text.length === 0) {
+            return;
+        }
+    }
+
+    const contentsChange = (e) => {
+        setContents(e.target.value);
+    }
+
+    const optionChange = (e) => {
+        setOption(e.target.value);
+    }
+
     return (
-        <div className="box">
-            <input
-                type="text"
-                id="question"
-                name="question" />
-            <br />
-            <select name="option" id="option" value="">
-                <option value="number">Number</option>
-                <option value="text">Text</option>
-                <option value="boolean">Boolean</option>
-            </select>
-            <button type="button" className="material-icons del">delete_outline</button>
+        <div>
+            <div>
+                <input
+                    type="text"
+                    id="question"
+                    className="question"
+                    onChange={contentsChange} />
+                <br />
+                <select className="option" id="option" onChange={optionChange}>
+                    <option value="number">Number</option>
+                    <option value="text">Text</option>
+                    <option value="boolean">Boolean</option>
+                </select>
+            </div>
         </div>
     );
 }
