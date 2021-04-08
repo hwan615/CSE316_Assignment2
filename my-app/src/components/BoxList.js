@@ -4,7 +4,7 @@ import BoxDemo from "./BoxDemo";
 
 function BoxList() {
 
-    const [text, setText] = useState('');
+    const [text, setText] = useState([]);
     const [textlist, setTextlist] = useState([]);
     const [select, setSelect] = useState('');
     const [selectlist, setSelectlist] = useState([]);
@@ -12,9 +12,14 @@ function BoxList() {
     const [boxes, setBoxes] = useState([]);
 
     const textChange = (boxnum, e) => {
-        setText(e.target.value);
-        textlist[boxnum] = {text}
-        setText('');
+        const newText = {
+            text:''
+        };
+        newText.text = e.target.value;
+        console.log(newText.text);
+        textlist[boxnum] = newText
+        setTextlist([...textlist, ])
+        setText([...text, newText]);
     }
 
     const selectChange = (e) => {
@@ -25,8 +30,8 @@ function BoxList() {
 
     const addBox = (e) => {
         const newBox = {
-            content:'',
-            option:'',
+            content: (text),
+            option: selectlist[boxnum],
             id: boxnum
         };
 
@@ -49,7 +54,7 @@ function BoxList() {
             <div className="boxtop">
                 <h2>Edit Questions:</h2>
                 <button id="plus-btn" className="material-icons plus" onClick={addBox}>add_circle_outline</button>
-                <button onClick={() => console.log({boxnum})}></button>
+                <button onClick={() => console.log({text})}></button>
             </div>
             <form className="boxes">
                 {boxes.map(b => {
