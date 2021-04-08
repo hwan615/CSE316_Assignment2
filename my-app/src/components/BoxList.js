@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import BoxDemo from "./BoxDemo";
+import MultipleChoice from "./multipleChoice";
 
 function BoxList() {
 
@@ -16,8 +17,9 @@ function BoxList() {
             text:''
         };
         newText.text = e.target.value;
-        console.log(newText.text);
+        console.log(newText.text)
         textlist[boxnum] = newText
+        console.log(textlist)
         setTextlist([...textlist, ])
         setText([...text, newText]);
     }
@@ -30,7 +32,7 @@ function BoxList() {
 
     const addBox = (e) => {
         const newBox = {
-            content: (text),
+            content: textlist[boxnum],
             option: selectlist[boxnum],
             id: boxnum
         };
@@ -54,7 +56,6 @@ function BoxList() {
             <div className="boxtop">
                 <h2>Edit Questions:</h2>
                 <button id="plus-btn" className="material-icons plus" onClick={addBox}>add_circle_outline</button>
-                <button onClick={() => console.log({text})}></button>
             </div>
             <form className="boxes">
                 {boxes.map(b => {
@@ -69,6 +70,7 @@ function BoxList() {
                             key={b.id} />
                     );
                 })}
+                <MultipleChoice />
                 <button className="save-btn" type="submit">Save</button>
             </form>
         </div>
