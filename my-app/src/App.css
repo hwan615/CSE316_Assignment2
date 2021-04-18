@@ -167,6 +167,16 @@ form {
     background-color: var(--standardBackgroundColor);
 }
 
+.material-icons.del.del2{
+    position: absolute;
+    border: none;
+    right: 17px;
+    bottom: 110px;
+    background-color: var(--standardBackgroundColor);
+}
+
+
+
 .box {
     background-color: var(--standardBackgroundColor);
     border-radius: 15px;
@@ -185,6 +195,7 @@ form {
     border-radius: 8px;
     color: var(--actionTextColor);
 }
+
 
 input:focus,
 .select:focus,
