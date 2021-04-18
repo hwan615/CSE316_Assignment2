@@ -12,6 +12,9 @@ function BoxList() {
     const [boxnum, setBoxnum] =useState(0);
     const [boxes, setBoxes] = useState([]);
 
+
+
+
     const textChange = (boxnum, e) => {
         const newText = {
             text:''
@@ -45,11 +48,6 @@ function BoxList() {
 
         setBoxes(boxes.filter(b => b.id !== id));
     }
-
-
-    // useEffect(() => {
-    //     localStorage.setItem('boxes', JSON.stringify(boxes))
-    // }, [boxes])
 
     return (
         <div className="main">
