@@ -1,52 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../App.css";
 import BoxDemo from "./BoxDemo";
 import MultipleChoice from "./multipleChoice";
 
 function BoxList() {
 
-    const [text, setText] = useState([]);
-    const [textlist, setTextlist] = useState([]);
-    const [select, setSelect] = useState('');
-    const [selectlist, setSelectlist] = useState([]);
+    const [box, setBox] = useState([]);
     const [boxnum, setBoxnum] =useState(0);
-    const [boxes, setBoxes] = useState([]);
 
-
-
-
-    const textChange = (boxnum, e) => {
-        const newText = {
-            text:''
-        };
-        newText.text = e.target.value;
-        console.log(newText.text)
-        textlist[boxnum] = newText
-        console.log(textlist)
-        setTextlist([...textlist, ])
-        setText([...text, newText]);
-    }
-
-    const selectChange = (e) => {
-        setSelect(e.target.value);
-        selectlist[boxnum] = {select};
-        setSelect('');
+    const boxChange = (boxnum, e) => {
+        box[boxnum].content = e.target.value;
+        console.log(box);
     }
 
     const addBox = (e) => {
         const newBox = {
-            content: textlist[boxnum],
-            option: selectlist[boxnum],
+            content: '',
+            option: '',
             id: boxnum
         };
-
-        setBoxes([...boxes, newBox]);
+        setBox([...box, newBox]);
         setBoxnum(boxnum+1);
     }
 
     const handleDelete = (id) => {
+        setBox(box.filter(b => b.id !== id));
+        let temp = id;
+        while (boxnum > 1 && temp < boxnum-1) {
+            box[temp+1].id = temp;
+            temp++;
+        }
+        setBoxnum(boxnum-1);
+    }
 
-        setBoxes(boxes.filter(b => b.id !== id));
+    const selectChange = (boxnum, e) => {
+        box[boxnum].option = e.target.value;
+        console.log(box);
     }
 
     return (
@@ -56,15 +45,15 @@ function BoxList() {
                 <button id="plus-btn" className="material-icons plus" onClick={addBox}>add_circle_outline</button>
             </div>
             <form className="boxes">
-                {boxes.map(b => {
+                {box.map(b => {
                     return (
                         <BoxDemo
-                            content={textlist[boxnum]}
-                            option={selectlist[boxnum]}
-                            textChange={(e) => textChange(b.boxnum, e)}
-                            selectChange={selectChange}
+                            content={b[0]}
+                            option={b[1]}
+                            boxChange={(e) => boxChange(b.id, e)}
+                            selectChange={(e) => selectChange(b.id, e)}
                             handleDelete={handleDelete}
-                            box={b}
+                            id={b.id}
                             key={b.id} />
                     );
                 })}

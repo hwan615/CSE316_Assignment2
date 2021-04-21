@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import BoxList from "./BoxList";
-import Question from "./Question";
 
 function EditQuestions() {
 
-    const [questions, setQuestions] = useState([
-        {
-            text: "number of people",
-            typeOfQ: "newday"
-        },
-        {
-            text: "number of children",
-            typeOfQ: "nextday"
-        }
-    ]);
+    // const [questions, setQuestions] = useState([
+    //     {
+    //         text: "number of people",
+    //         typeOfQ: "newday"
+    //     },
+    //     {
+    //         text: "number of children",
+    //         typeOfQ: "nextday"
+    //     }
+    // ]);
 
     return (
-        questions.map((question) =>
-            <div>
-                <input name="" value={question.text} />
-            </div>
-        )
+        <BoxList />
     );
 }
 
