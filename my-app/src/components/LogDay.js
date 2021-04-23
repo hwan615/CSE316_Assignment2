@@ -19,9 +19,9 @@ function LogDay() {
                     <br />
                     <div>
                         <input type="radio" name="f" className="true" />
-                        <label for="ra">True</label>
+                        <label htmlFor="ra">True</label>
                         <input type="radio" name="f" className="false" />
-                        <label for="ra">False</label>
+                        <label htmlFor="ra">False</label>
                     </div>
                 </div>
 
@@ -36,16 +36,16 @@ function LogDay() {
                     <br />
                     <div>
                         <input type="radio" name="ok" className="true" />
-                        <label for="ra">Ok day</label>
+                        <label htmlFor="ra">Ok day</label>
                         <br />
                         <input type="radio" name="bad" className="truee" />
-                        <label for="ra">Bad day</label>
+                        <label htmlFor="ra">Bad day</label>
                         <br />
                         <input type="radio" name="gt" className="truee" />
-                        <label for="ra">Greate day</label>
+                        <label htmlFor="ra">Greate day</label>
                     </div>
                 </div>
-                <button class="save-btn" type="submit">Submit</button>
+                <button className="save-btn" type="submit">Submit</button>
 
             </form>
         </div>

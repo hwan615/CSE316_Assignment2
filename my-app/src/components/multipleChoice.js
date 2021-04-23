@@ -12,22 +12,22 @@ function MultipleChoice({ content, textChange, selectChange, handleDelete, box }
                 value={content}
                 onChange={textChange} />
             <br />
-            <select className="option" id="option" onChange={selectChange} name="option" value='multiple choice'>
+            {/* <select className="option" id="option" onChange={selectChange} name="option" value='multiple choice'>
                 <option value="number">Ok day</option>
                 <option value="text">Bad day</option>
                 <option value="boolean">Greate day</option>
-            </select>
+            </select> */}
             <button type="button" className="material-icons del del2" onClick={() => handleDelete(box.id)}>delete_outline</button>
 
             <div>
                 <input type="radio" name="ok" className="true " />
-                <label className="a"for="ra">Ok day</label>
+                <label className="a" htmlFor="ra">Ok day</label>
                 <br />
                 <input type="radio" name="bad" className="truee " />
-                <label className="a"for="ra">Bad day</label>
+                <label className="a" htmlFor="ra">Bad day</label>
                 <br />
                 <input type="radio" name="gt" className="truee " />
-                <label className="a"for="ra">Greate day</label>
+                <label className="a" htmlFor="ra">Greate day</label>
             </div>
 
         </div>

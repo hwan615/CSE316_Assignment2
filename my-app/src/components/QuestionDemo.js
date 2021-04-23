@@ -1,6 +1,6 @@
 import React from "react";
 
-function BoxDemo(props) {
+function QuestionDemo(props) {
 
     return (
         <div className="box">
@@ -9,17 +9,17 @@ function BoxDemo(props) {
                 id="question"
                 className="question"
                 name="content"
-                value={props.content} 
-                onChange={props.boxChange} />
+                value={props.text} 
+                onChange={props.questionChange} />
             <br />
-            <select className="option" id="option" onChange={props.selectChange} name="option" value={props.option}>
+            <select className="option" id="option" onChange={props.selectChange} name="option" value={props.answerType}>
                 <option value="number">Number</option>
                 <option value="text">Text</option>
                 <option value="boolean">Boolean</option>
             </select>
-            <button type="button" className="material-icons del" onClick={() => props.handleDelete(props.id)}>delete_outline</button>
+            <button type="button" className="material-icons del" onClick={() => props.handleDelete(props.dd)}>delete_outline</button>
         </div>
     );
 }
 
-export default BoxDemo;
+export default QuestionDemo;
