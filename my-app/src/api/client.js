@@ -21,6 +21,7 @@ export const deleteQuestionByIdAPIMethod = (questionId, success) => {
         .then(parseJSON)
         .then(success);
 }
+
 export const updateQuestionAPIMethod = (question, success) => {
     return fetch(`/api/questions`, {
         ...defaultHeaders,

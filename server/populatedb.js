@@ -33,7 +33,7 @@ function questionCreate(text, answerType, multipleChoiceResponses, creationDate,
         console.log('New question: ' + question);
         questions.push(question)
         cb(null, question)
-    });
+    }   );
 }
 
 function questionresponseCreate(response, question, date, cb) {
@@ -54,7 +54,7 @@ function questionresponseCreate(response, question, date, cb) {
         console.log("New Qrespnse" + questionresponse);
         questionresponses.push(questionresponse);
         cb(null, questionresponse);
-    });
+    }   );
 
 }
 
@@ -70,8 +70,21 @@ function createQuestions(cb) {
         cb);
 }
 
+function createQuestionresponse(cb) {
+    async.series([
+        function (callback) {
+            questionresponseCreate('the day', 'Rothfuss','1973-06-06', callback);
+        },
+        function (callback) {
+            questionresponseCreate('th', 'Rfuss','1973-06-06', callback);
+        },
+    ],
+        cb);
+}
+
 async.series([
-    createQuestions
+    createQuestions,
+    createQuestionresponse
 ],
 
 function(err, results) {

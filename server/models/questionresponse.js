@@ -10,11 +10,6 @@ var QuestionResponseSchema = new Schema(
     }
 );
 
-QuestionResponseSchema
-    .virtual('url')
-    .get(function () {
-        return '/catalog/book/' + this._id;
-    });
 
 module.exports = mongoose.model('QuestionResponse', QuestionResponseSchema);
 

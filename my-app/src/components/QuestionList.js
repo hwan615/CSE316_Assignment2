@@ -2,77 +2,66 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import QuestionDemo from "./QuestionDemo";
 import MultipleChoice from "./multipleChoice";
-import {getQuestionsAPIMethod} from "../api/client";
+import { createQuestionAPIMethod, getQuestionsAPIMethod } from "../api/client";
 
 function QuestionList() {
 
     const [questions, setQuestions] = useState([]);
-    const [questionnum, setquestionnum] =useState(0);
+    const [questionnum, setquestionnum] = useState(0);
 
     useEffect(() => {
-        console.log('asdf');
         getQuestionsAPIMethod((questions) => {
-            console.log('aa');
             setQuestions(questions);
             console.dir(questions);
-            console.log('aaaa');
         });
     }, []);
 
-    const questionChange = (questionnum, e) => {
-        questions[questionnum].text = e.target.value;
-        console.log(questions);
-    }
-
-    const addquestion = (e) => {
+    const addquestion = () => {
         const newquestion = {
             text: '',
             answerType: '',
-            dd: questionnum
+            _id: questionnum
         };
         setQuestions([...questions, newquestion]);
-        setquestionnum(questionnum+1);
+        setquestionnum(questionnum + 1);
+    };
+
+    const handleDelete = (_id) => {
+        setQuestions(questions.filter(q => q._id !== _id));
+    }
+
+    const selectChange = (question, e) => {
+        question.answerType = e.target.value;
         console.log(questions);
     }
 
-    const handleDelete = (dd) => {
-        setQuestions(questions.filter(b => b.dd !== dd));
-        let temp = dd;
-        while (questionnum > 1 && temp < questionnum-1) {
-            questions[temp+1].dd = temp;
-            temp++;
-        }
-        setquestionnum(questionnum-1);
-    }
-
-    const selectChange = (questionnum, e) => {
-        questions[questionnum].answerType = e.target.value;
+    const questionChange = (question, e) => {
+        question.text = e.target.value;
         console.log(questions);
     }
-
+    
     return (
         <div className="main">
             <div className="boxtop">
                 <h2>Edit Questions:</h2>
                 <button id="plus-btn" className="material-icons plus" onClick={addquestion}>add_circle_outline</button>
             </div>
-            {/* <form className="questiones">
+            <form className="questiones">
                 {questions.map(question => {
                     return (
                         <QuestionDemo
                             text={question.text}
                             answerType={question.answerType}
-                           
-                            questionChange={(e) => questionChange(question.dd, e)}
-                            selectChange={(e) => selectChange(question.dd, e)}
+                            questionChange={(e) => questionChange(question, e)}
+                            selectChange={(e) => selectChange(question, e)}
                             handleDelete={handleDelete}
-                            dd={question.dd}
-                            key={question.dd} />
+                            _id={question._id}
+                            key={question._id} />
                     );
                 })}
                 <MultipleChoice />
                 <button className="save-btn" type="submit">Save</button>
-            </form> */}
+            </form>
         </div>
     );
 }
