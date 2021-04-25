@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import "../App2.css";
 import Calendar from "./Calendar";
+import { getQuestionsAPIMethod } from "../api/client";
+
 
 function LogDay() {
+
+    const [questions, setQuestions] = useState([]);
+
+    useEffect(() => {
+        getQuestionsAPIMethod((questions) => {
+            setQuestions(questions);
+            console.dir(questions);
+        });
+    }, []);
 
     return (
         <div className="main">
             <Calendar />
+            <form id="boxes">
+                {questions.map(question => {
+                    return (
+                        <div className="box">
+                            <h4 className='title'>{question.text}</h4>
+                            <br />
+                            <input type={question.answerType} className="under" />
+                        </div>
+                )
+                })}
+
+            </form>
+
+
+
+
             <form id="boxes" action="">
                 <div id="box1" className="box box1">
                     <h4 className="title">Number of pushups</h4>
