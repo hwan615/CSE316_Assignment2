@@ -57,10 +57,10 @@ app.delete('/api/questions', wrapAsync(async function (req, res) {
 
 app.post('/api/questions', wrapAsync(async function (req, res) {
     const newQuestion = new Question({
-        text: "a",
-        answerType: "b",
-        multipleChoiceResponses: "treu",
-        creationDate: "date"
+        text: req.body.text,
+        answerType: req.body.answerType,
+        multipleChoiceResponses: req.body.multipleChoiceResponses,
+        creationDate: Date.now()
     })
     await newQuestion.save();
     res.json(newQuestion);

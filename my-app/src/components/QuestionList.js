@@ -16,30 +16,47 @@ function QuestionList() {
         });
     }, []);
 
-    const addquestion = () => {
-        const newquestion = {
-            text: '',
-            answerType: '',
-            _id: questionnum
-        };
-        setQuestions([...questions, newquestion]);
-        setquestionnum(questionnum + 1);
+    // const addquestion = () => {
+    //     const newquestion = {
+    //         text: '',
+    //         answerType: 'number',
+    //         _id: questionnum
+    //     };
+    //     setQuestions([...questions, newquestion]);
+    //     setquestionnum(questionnum + 1);
+    //     console.log(questions);
+    // };
+
+    const newquestion = {
+        text: '',
+        answerType: 'number',
+        multipleChoiceResponses: '',
+        creationDate: Date.now()
     };
+
+    const addquestion = (question) => {
+        createQuestionAPIMethod(question, (response) => {
+            console.log("Created the question on the server");
+            console.dir(response);
+        });
+    }
 
     const handleDelete = (_id) => {
         setQuestions(questions.filter(q => q._id !== _id));
     }
 
-    const selectChange = (question, e) => {
+    const selectChange = (e, question) => {
         question.answerType = e.target.value;
         console.log(questions);
+        setQuestions([...questions]);
     }
 
-    const questionChange = (question, e) => {
+    const questionChange = (e, question) => {
         question.text = e.target.value;
         console.log(questions);
+        setQuestions([...questions]);
     }
-    
+
     return (
         <div className="main">
             <div className="boxtop">
@@ -51,9 +68,11 @@ function QuestionList() {
                     return (
                         <QuestionDemo
                             text={question.text}
-                            answerType={question.answerType}
-                            questionChange={(e) => questionChange(question, e)}
-                            selectChange={(e) => selectChange(question, e)}
+                            question={question}
+                            questionChange={(e) => questionChange(e, question)}
+                            selectChange={(e) => selectChange(e, question)}
+                            text={question.text}
+                            question={question}
                             handleDelete={handleDelete}
                             _id={question._id}
                             key={question._id} />

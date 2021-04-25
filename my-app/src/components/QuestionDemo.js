@@ -2,11 +2,6 @@ import React from "react";
 
 function QuestionDemo(props) {
 
-    const handleChange = (e) => {
-        const value = e.target.value;
-        console.log(questions);
-    }
-
     return (
         <div className="box">
             <input
@@ -15,9 +10,9 @@ function QuestionDemo(props) {
                 className="question"
                 name="text"
                 value={props.text} 
-                onChange={handleChange} />
+                onChange={(e) => props.questionChange(e, props.question)} />
             <br />
-            <select className="option" id="option" onChange={props.selectChange} name="answerType" value={props.answerType}>
+            <select className="option" id="option" value={props.question.answerType} onChange={(e) => props.selectChange(e, props.question)}>
                 <option value="number">Number</option>
                 <option value="text">Text</option>
                 <option value="boolean">Boolean</option>

@@ -61,10 +61,10 @@ function questionresponseCreate(response, question, date, cb) {
 function createQuestions(cb) {
     async.series([
         function (callback) {
-            questionCreate('the day', 'Rothfuss','Rothuss','1973-06-06', callback);
+            questionCreate('the day', 'Rothfuss','Rothuss',Date.now(), callback);
         },
         function (callback) {
-            questionCreate('th', 'Rfuss','Rothss','1973-06-06', callback);
+            questionCreate('th', 'Rfuss','Rothss',Date.now(), callback);
         },
     ],
         cb);
@@ -73,10 +73,10 @@ function createQuestions(cb) {
 function createQuestionresponse(cb) {
     async.series([
         function (callback) {
-            questionresponseCreate('the day', 'Rothfuss','1973-06-06', callback);
+            questionresponseCreate('the day', 'Rothfuss',Date.now(), callback);
         },
         function (callback) {
-            questionresponseCreate('th', 'Rfuss','1973-06-06', callback);
+            questionresponseCreate('th', 'Rfuss',Date.now(), callback);
         },
     ],
         cb);
