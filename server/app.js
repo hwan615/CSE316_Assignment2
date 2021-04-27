@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Question = require('./models/question');
-// const QuestionResponse = require('./models/questionresponse');
+const QuestionResponse = require('./models/questionresponse');
 const ExpressError = require('./utils/ExpressError');
 
 const app = express();
@@ -32,7 +32,12 @@ app.get(`/api/questions`, wrapAsync(async function (req, res) {
     res.json(questions);
 }));
 
-app.get('/api/questions/:id', wrapAsync(async function (req,res, next) {
+app.get('/api/questionresponses', wrapAsync(async function (req, res) {
+    const questionresponses = await QuestionResponse.find({});
+    res.json(questionresponses);
+}));
+
+app.get('/api/questions/:id', wrapAsync(async function (req, res, next) {
     let id = req.params.id;
     if (mongoose.isValidObjectId(id)) {
         const question = await Question.findById(id);
@@ -55,19 +60,68 @@ app.delete('/api/questions', wrapAsync(async function (req, res) {
 }));
 
 
-app.post('/api/questions', wrapAsync(async function (req, res) {
-    const newQuestion = new Question({
-        text: req.body.text,
-        answerType: req.body.answerType,
-        multipleChoiceResponses: req.body.multipleChoiceResponses,
-        creationDate: Date.now()
-    })
-    await newQuestion.save();
-    res.json(newQuestion);
+app.put('/api/questions', wrapAsync(async function (req, res) {
+    //console.log(req.body);
+
+    const questions = await Question.find({});
+    console.log('start')
+   // console.log(questions)
+    const check1 = req.body.length > questions.length;
+  //  console.log(check1)
+    const check2 = req.body.length === questions.length;
+  //  console.log(check2)
+
+
+  for (let [arrayIndex, item] of Object.entries(req.body)) {
+        if (check2 && item._id < 10000) {
+        }
+        else if (check1 && item._id < 10000) {
+            const newquestion = new Question({
+                text: item.text,
+                answerType: item.answerType,
+                multipleChoiceResponse: item.multipleChoiceResponse,
+                creationDate: Date.now()
+            })
+            await newquestion.save();
+        }
+        else {
+            console.log(item._id);
+            await Question.findByIdAndUpdate(item._id, {
+                text: item.text,
+                answerType: item.answerType,
+                multipleChoiceResponse: item.multipleChoiceResponse,
+                creationDate: Date.now()
+            });
+        }
+    };
+    for (let [arrayIndex, item] of Object.entries(questions)) {
+        let check3 = true;
+        console.log(req.body.length)
+        for (i=0; i < req.body.length; i++) {
+            console.log(i)
+            console.log(req.body[i]);
+            console.log(item._id);
+            console.log(req.body[i]._id);
+            if (item._id == req.body[i]._id) {
+                console.log('a');
+                check3 = false;
+            }
+        }
+        if (check3) {
+            await Question.findByIdAndDelete(item._id);
+        }
+    }
+   console.log(questions)
+
+    res.send('test')
+    //   res.json(THELISTOFQUESTIONS)
+
+    /*  1. Create a list of all questions that have been created/added on the backend
+  2. Send these back with res.json()
+  3. On Frontend, get the result back and set these questions as the question state
+  (This allows you to update the _id, for all newly created questions)    */
+    // res.json(questions);
 }));
-
-
-
 
 const handleValidationErr = err => {
     return new ExpressError(`Data validation error: ${err.message}`, 400)

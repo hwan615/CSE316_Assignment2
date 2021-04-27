@@ -10,6 +10,5 @@ var QuestionResponseSchema = new Schema(
     }
 );
 
-
 module.exports = mongoose.model('QuestionResponse', QuestionResponseSchema);
 

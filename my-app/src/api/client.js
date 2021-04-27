@@ -12,6 +12,14 @@ export const getQuestionsAPIMethod = (success) => {
         .then(success);
 }
 
+export const getQuestionResponsesAPIMethod = (success) => {
+    return fetch(`/api/questionresponses`, {
+        ...defaultHeaders,
+    }).then(checkStatus)
+        .then(parseJSON)
+        .then(success);
+}
+
 
 export const deleteQuestionByIdAPIMethod = (questionId, success) => {
     return fetch(`/api/questions/${questionId}`, {
@@ -22,15 +30,17 @@ export const deleteQuestionByIdAPIMethod = (questionId, success) => {
         .then(success);
 }
 
-export const updateQuestionAPIMethod = (question, success) => {
+export const updateQuestionsAPIMethod = (questions, success) => {
     return fetch(`/api/questions`, {
         ...defaultHeaders,
         method: 'PUT', // The method defaults to GET
-        body: JSON.stringify(question),
+        body: JSON.stringify(questions),
     }).then(checkStatus)
         .then(parseJSON)
         .then(success);
 }
+
+
 
 export const createQuestionAPIMethod = (question, success) => {
     return fetch(`/api/questions`, {
