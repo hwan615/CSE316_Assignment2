@@ -63,7 +63,8 @@ app.post('/api/questions', wrapAsync(async function (req, res) {
         creationDate: Date.now()
     })
     await newQuestion.save();
-    res.json(newQuestion);
+    const question = req.question.toJSON();
+    res.json(question);
 }));
 
 

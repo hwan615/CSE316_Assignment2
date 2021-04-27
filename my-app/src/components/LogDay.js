@@ -13,7 +13,7 @@ function LogDay() {
                     <br />
                     <input type="tex" className="under" />
                 </div>
-
+                
                 <div id="box2" className="box box2">
                     <h4 className="title">Had a long walk today</h4>
                     <br />

@@ -6,6 +6,7 @@ function EditQuestions() {
     return (
         <QuestionList />
     );
+
 }
 
 export default EditQuestions;
