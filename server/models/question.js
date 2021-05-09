@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 
 var QuestionSchema = new Schema(
     {
-        text: {type: String, required: true, maxlength: 100},
-        answerType: {type: String, required: true},
+        text: {type: String},
+        answerType: {type: String},
         multipleChoiceResponses: {type: String},
         creationDate: {type: Date}
     }

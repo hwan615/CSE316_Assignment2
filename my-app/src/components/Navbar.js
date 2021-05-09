@@ -4,6 +4,7 @@ import myPhoto from './myphoto.jpg';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import EditQuestions from "./EditQuestions";
 import LogDay from "./LogDay";
+import ViewData from "./ViewData";
 
 function Navbar() {
 
@@ -21,6 +22,7 @@ function Navbar() {
         </div>
         <Route path="/Logday" component={LogDay} />
         <Route path='/EditQ' component={EditQuestions} />
+        <Route path='/Data' component={ViewData} />
         {/* <Route path='/EditQ' component={a} /> */}
 
         <Route exact path='/' render={() => (

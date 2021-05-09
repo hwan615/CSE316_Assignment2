@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import QuestionDemo from "./QuestionDemo";
 import MultipleChoice from "./multipleChoice";
-import { createQuestionAPIMethod, getQuestionsAPIMethod } from "../api/client";
+import { updateQuestionsAPIMethod, getQuestionsAPIMethod } from "../api/client";
 
 function QuestionList() {
 
@@ -16,30 +16,23 @@ function QuestionList() {
         });
     }, []);
 
-    // const addquestion = () => {
-    //     const newquestion = {
-    //         text: '',
-    //         answerType: 'number',
-    //         _id: questionnum
-    //     };
-    //     setQuestions([...questions, newquestion]);
-    //     setquestionnum(questionnum + 1);
-    //     console.log(questions);
-    // };
-
-    const newquestion = {
-        text: '',
-        answerType: 'number',
-        multipleChoiceResponses: '',
-        creationDate: Date.now()
+    const addquestion = () => {
+        const newquestion = {
+            text: '',
+            answerType: 'number',
+            _id: questionnum
+        };
+        setQuestions([...questions, newquestion]);
+        setquestionnum(questionnum + 1);
+        console.log(questions);
     };
 
-    const addquestion = (question) => {
-        createQuestionAPIMethod(question, (response) => {
-            console.log("Created the question on the server");
-            console.dir(response);
-        });
-    }
+    // const newquestion = {
+    //     text: '',
+    //     answerType: 'number',
+    //     multipleChoiceResponses: '',
+    //     creationDate: Date.now()
+    // };
 
     const handleDelete = (_id) => {
         setQuestions(questions.filter(q => q._id !== _id));
@@ -55,6 +48,14 @@ function QuestionList() {
         question.text = e.target.value;
         console.log(questions);
         setQuestions([...questions]);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("tset before")
+        updateQuestionsAPIMethod(questions, (response) => {
+            console.log('af')
+        }) 
     }
 
     return (
@@ -79,7 +80,7 @@ function QuestionList() {
                     );
                 })}
                 <MultipleChoice />
-                <button className="save-btn" type="submit">Save</button>
+                <button className="save-btn" type="submit" onClick={handleSubmit}>Save</button>
             </form>
         </div>
     );

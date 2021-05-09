@@ -1,4 +1,5 @@
 import React from "react";
+import MultipleChoice from "./multipleChoice";
 
 function QuestionDemo(props) {
 
@@ -16,6 +17,7 @@ function QuestionDemo(props) {
                 <option value="number">Number</option>
                 <option value="text">Text</option>
                 <option value="boolean">Boolean</option>
+                <option value="multiple choice">MultipleChoice</option>
             </select>
             <button type="button" className="material-icons del" onClick={() => props.handleDelete(props._id)}>delete_outline</button>
         </div>
