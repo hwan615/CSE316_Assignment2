@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App2.css";
 import Calendar from "./Calendar";
-import { getQuestionsAPIMethod } from "../api/client";
+import { getQuestionsAPIMethod, updateQuestionsAPIMethod } from "../api/client";
 
 
 function LogDay() {

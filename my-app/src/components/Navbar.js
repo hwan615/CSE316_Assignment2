@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom
 import EditQuestions from "./EditQuestions";
 import LogDay from "./LogDay";
 import ViewData from "./ViewData";
+import Profile from "./Profile";
 
 function Navbar() {
 
@@ -18,11 +19,12 @@ function Navbar() {
             <Link to="/">Edit Questions</Link>
             <Link to="/Data">View Data</Link>
           </div>
-          <img className="photo" src={myPhoto} alt="myPhoto" />
+          <Link to="/Profile"><img className="photo" src={myPhoto} alt="myPhoto" /></Link>
         </div>
         <Route path="/Logday" component={LogDay} />
         <Route path='/EditQ' component={EditQuestions} />
         <Route path='/Data' component={ViewData} />
+        <Route path='/Profile' component={Profile} />
         {/* <Route path='/EditQ' component={a} /> */}
 
         <Route exact path='/' render={() => (

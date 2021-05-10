@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const Question = require('./models/question');
 const QuestionResponse = require('./models/questionresponse');
 const ExpressError = require('./utils/ExpressError');
@@ -53,7 +54,7 @@ app.get('/api/questions/:id', wrapAsync(async function (req, res, next) {
 }));
 
 app.delete('/api/questions', wrapAsync(async function (req, res) {
-    const id = req.params.id;
+    const id = req.params.id; 
     const result = await Question.findByIdAndDelete(id);
     console.log("Deleted successfully: " + result);
     res.json(result);
