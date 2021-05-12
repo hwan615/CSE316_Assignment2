@@ -9,8 +9,11 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-var mongoDB = 'mongodb://localhost:27017/Assignment3Data';
+
+var mongoDB = 'mongodb+srv://younghwan:young3961!@cluster0.lykn4.mongodb.net/test';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -23,7 +26,7 @@ function wrapAsync(fn) {
 }
 
 app.use((req, res, next) => {
-    req.requestTime = Date.now();
+    req.requestTime = Date.now();0
     console.log(req.method, req.path);
     next();
 });

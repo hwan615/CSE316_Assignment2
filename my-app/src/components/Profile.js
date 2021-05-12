@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App3.css";
 import myPhoto from './myphoto.jpg';
 
-
-
 function Profile() {
+
+    const [name, setName] = useState(["this ", "that"]);
+    const [email, setEmail] = useState(["suny@suny.com"]);
+    const [profile, setProfile] = useState([]);
+    const [address, setAddress] = useState([]);
+
+    const handleChange = (e) => {
+        setName(e.target.value);
+    }
+
     return (
         <div className="main">
             <div className="boxtop">
@@ -21,7 +29,7 @@ function Profile() {
                 </div>
                 <div className="box">
                     <h3 style={{ marginLeft: "15px", marginTop: "10px" }}>Name</h3>
-                    <input className="input"></input>
+                    <input className="input" value={name} onChange={handleChange}></input>
                 </div>
                 <div className="box">
                     <h3 style={{ marginLeft: "15px", marginTop: "10px" }}>Email</h3>
