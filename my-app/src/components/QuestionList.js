@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import QuestionDemo from "./QuestionDemo";
 import MultipleChoice from "./multipleChoice";
-import { updateQuestionsAPIMethod, getQuestionsAPIMethod } from "../api/client";
+import { getQuestionsAPIMethod } from "../api/client";
 
 function QuestionList() {
 
@@ -53,9 +53,6 @@ function QuestionList() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("tset before")
-        updateQuestionsAPIMethod(questions, (response) => {
-            console.log('af')
-        }) 
     }
 
     return (

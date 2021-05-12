@@ -28,22 +28,23 @@ function LogDay() {
         console.log(responses);
     };
 
-    const responses = 
-
-    // const handleSubmit
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("tset before")
+    }
 
     return (
         <div className="main">
             <Calendar />
             <form id="boxes">
                 {questions.map(question => {
-                    addresponse(question);
-                    console.log(responses);
-                    console.log(question._id);
+                    // addresponse(question);     --> I tried to add the response with this function, but I get the error..
+                    // console.log(responses);
+                    // console.log(question._id);
                     if (question.answerType == 'boolean') {
                         return (
                             <div className="box" key={question._id}>
-                                <h4 className="title">{responses.response}</h4>
+                                <h4 className="title">{question.text}</h4>
                                 <br />
                                 <div>
                                     <input type="radio" name="f" className="true" />
@@ -82,7 +83,7 @@ function LogDay() {
                         );
                     }
                 })}
-                <button className="save-btn" type="submit">Submit</button>
+                <button className="save-btn" type="submit" onclick={handleSubmit}>Submit</button>
             </form>
         </div>
     );

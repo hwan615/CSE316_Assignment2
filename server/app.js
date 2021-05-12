@@ -8,7 +8,8 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-var mongoDB = 'mongodb://localhost:27017/Assignment3Data';
+var mongoDB = 'mongodb+srv://younghwan:young3961!@cluster0.lykn4.mongodb.net/test';
+
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -60,22 +61,8 @@ app.delete('/api/questions', wrapAsync(async function (req, res) {
 }));
 
 
-<<<<<<< HEAD
-app.post('/api/questions', wrapAsync(async function (req, res) {
-    const newQuestion = new Question({
-        text: req.body.text,
-        answerType: req.body.answerType,
-        multipleChoiceResponses: req.body.multipleChoiceResponses,
-        creationDate: Date.now()
-    })
-    await newQuestion.save();
-    const question = req.question.toJSON();
-    res.json(question);
-}));
-=======
 app.put('/api/questions', wrapAsync(async function (req, res) {
     //console.log(req.body);
->>>>>>> 3ceabfc7b71067603d4dbb193635fb129b638601
 
     const questions = await Question.find({});
     console.log('start')
