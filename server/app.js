@@ -27,7 +27,7 @@ function wrapAsync(fn) {
 };
 
 app.use((req, res, next) => {
-    req.requestTime = Date.now();0
+    req.requestTime = Date.now(); 0
     console.log(req.method, req.path);
     next();
 });
@@ -63,7 +63,7 @@ app.get('/api/questions/:id', wrapAsync(async function (req, res, next) {
 }));
 
 app.delete('/api/questions', wrapAsync(async function (req, res) {
-    const id = req.params.id; 
+    const id = req.params.id;
     const result = await Question.findByIdAndDelete(id);
     console.log("Deleted successfully: " + result);
     res.json(result);
@@ -75,14 +75,14 @@ app.put('/api/questions', wrapAsync(async function (req, res) {
 
     const questions = await Question.find({});
     console.log('start')
-   // console.log(questions)
+    // console.log(questions)
     const check1 = req.body.length > questions.length;
-  //  console.log(check1)
+    //  console.log(check1)
     const check2 = req.body.length === questions.length;
-  //  console.log(check2)
+    //  console.log(check2)
 
 
-  for (let [arrayIndex, item] of Object.entries(req.body)) {
+    for (let [arrayIndex, item] of Object.entries(req.body)) {
         if (check2 && item._id < 10000) {
         }
         else if (check1 && item._id < 10000) {
@@ -107,7 +107,7 @@ app.put('/api/questions', wrapAsync(async function (req, res) {
     for (let [arrayIndex, item] of Object.entries(questions)) {
         let check3 = true;
         console.log(req.body.length)
-        for (i=0; i < req.body.length; i++) {
+        for (i = 0; i < req.body.length; i++) {
             console.log(i)
             console.log(req.body[i]);
             console.log(item._id);
@@ -121,7 +121,7 @@ app.put('/api/questions', wrapAsync(async function (req, res) {
             await Question.findByIdAndDelete(item._id);
         }
     }
-   console.log(questions)
+    console.log(questions)
 
     res.send('test')
     //   res.json(THELISTOFQUESTIONS)
@@ -134,13 +134,17 @@ app.put('/api/questions', wrapAsync(async function (req, res) {
 }));
 
 app.put('/api/user', wrapAsync(async function (req, res) {
-    const newquestion = new Question({
-        photo: req.body[0].photo,
-        name: req.body[0].name,
-        email:req.body[0].email,
-    })
-    await newquestion.save();
-}));
+    for (let [arrayIndex, item] of Object.entries(req.body)) {
+        const newuser = new User({
+            photo: item.photo,
+            name: item.name,
+            email: item.email,
+            ad1: item.ad1,
+            ad2: item.ad2,
+        })
+        await newuser.save();
+    }
+    }));
 
 
 const handleValidationErr = err => {

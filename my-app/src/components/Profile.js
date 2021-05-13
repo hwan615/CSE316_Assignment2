@@ -27,6 +27,16 @@ function Profile() {
         setUser([...user]);
     }
 
+    const handleAd1Change = (e) => {
+        user[0].ad1 = e.target.value;
+        setUser([...user]);
+    }
+
+    const handleAd2Change = (e) => {
+        user[0].ad2 = e.target.value;
+        setUser([...user]);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("tset before")
@@ -58,10 +68,10 @@ function Profile() {
                 </div>
                 <div className="box">
                     <h3 style={{ marginLeft: "15px", marginTop: "10px" }}>Address</h3>
-                    <input className="input"></input>
-                    <input className="input"></input>
+                    <input className="input" value={user[0].ad1} onChange={handleAd1Change}></input>
+                    <input className="input" value={user[0].ad2} onChange={handleAd2Change}></input>
                 </div>
-                <button className="save-btn" type="submit">Save</button>
+                <button className="save-btn" type="submit" onClick={handleSubmit}>Save</button>
                 <button className="logout">Log out</button>
             </form>
         </div>

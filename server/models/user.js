@@ -9,7 +9,9 @@ var UserSchema = new Schema(
         email: {
             type: String,
             required: 'At least 1 character before @ symbol',
-        }
+        },
+        ad1: {type: String},
+        ad2: {type: String},
     }
 );
 

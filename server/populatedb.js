@@ -61,12 +61,14 @@ function questionresponseCreate(response, question, date, cb) {
 }
 
 
-function userCreate(photo, name, email, cb) {
+function userCreate(photo, name, email, ad1, ad2, cb) {
 
     userdetail = {
         photo: photo,
         name: name,
         email: email,
+        ad1: ad1,
+        ad2: ad2,
     }
 
     var user = new User(userdetail);
@@ -110,7 +112,7 @@ function createQuestionresponse(cb) {
 function createUser(cb) {
     async.series([
         function (callback) {
-            userCreate('https://res.cloudinary.com/dojy9dmtd/image/upload/v1620832211/myphoto_sb25qb.jpg', 'Younghwan Cha', 'younghwan.cha@dayLogger.com', callback);
+            userCreate('https://res.cloudinary.com/dojy9dmtd/image/upload/v1620832211/myphoto_sb25qb.jpg', 'Younghwan Cha', 'younghwan.cha@dayLogger.com', '119-2, Songdomunhwa-ro', 'Yeonsu-gu, Incheon, Republic of Korea', callback);
         },
     ],
         cb);
