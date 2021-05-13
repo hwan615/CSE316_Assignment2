@@ -1,16 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const Question = require('./models/question');
 const QuestionResponse = require('./models/questionresponse');
+const User = require('./models/user')
 const ExpressError = require('./utils/ExpressError');
 
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-var mongoDB = 'mongodb+srv://younghwan:young3961!@cluster0.lykn4.mongodb.net/test';
 
+var mongoDB = 'mongodb+srv://younghwan:young3961!@cluster0.lykn4.mongodb.net/edit_profile';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -20,10 +24,10 @@ function wrapAsync(fn) {
     return function (req, res, next) {
         fn(req, res, next).catch(e => next(e))
     }
-}
+};
 
 app.use((req, res, next) => {
-    req.requestTime = Date.now();
+    req.requestTime = Date.now();0
     console.log(req.method, req.path);
     next();
 });
@@ -36,6 +40,11 @@ app.get(`/api/questions`, wrapAsync(async function (req, res) {
 app.get('/api/questionresponses', wrapAsync(async function (req, res) {
     const questionresponses = await QuestionResponse.find({});
     res.json(questionresponses);
+}));
+
+app.get('/api/user', wrapAsync(async function (req, res) {
+    const user = await User.find({});
+    res.json(user);
 }));
 
 app.get('/api/questions/:id', wrapAsync(async function (req, res, next) {
@@ -54,7 +63,7 @@ app.get('/api/questions/:id', wrapAsync(async function (req, res, next) {
 }));
 
 app.delete('/api/questions', wrapAsync(async function (req, res) {
-    const id = req.params.id;
+    const id = req.params.id; 
     const result = await Question.findByIdAndDelete(id);
     console.log("Deleted successfully: " + result);
     res.json(result);
@@ -123,6 +132,16 @@ app.put('/api/questions', wrapAsync(async function (req, res) {
   (This allows you to update the _id, for all newly created questions)    */
     // res.json(questions);
 }));
+
+app.put('/api/user', wrapAsync(async function (req, res) {
+    const newquestion = new Question({
+        photo: req.body[0].photo,
+        name: req.body[0].name,
+        email:req.body[0].email,
+    })
+    await newquestion.save();
+}));
+
 
 const handleValidationErr = err => {
     return new ExpressError(`Data validation error: ${err.message}`, 400)

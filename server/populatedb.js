@@ -3,6 +3,7 @@ var userArgs = process.argv.slice(2);
 var async = require('async')
 var Question = require('./models/question')
 var QuestionResponse = require('./models/questionresponse')
+var User = require('./models/user')
 
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
@@ -13,6 +14,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var questions = []
 var questionresponses = []
+var users = [];
 
 function questionCreate(text, answerType, multipleChoiceResponses, creationDate, cb) {
 
@@ -58,6 +60,29 @@ function questionresponseCreate(response, question, date, cb) {
 
 }
 
+
+function userCreate(photo, name, email, cb) {
+
+    userdetail = {
+        photo: photo,
+        name: name,
+        email: email,
+    }
+
+    var user = new User(userdetail);
+
+    user.save(function (err) {
+        if (err) {
+            cb(err, null);
+            return;
+        }
+        console.log("New User" + user);
+        users.push(user);
+        cb(null, user);
+    }   );
+
+}
+
 function createQuestions(cb) {
     async.series([
         function (callback) {
@@ -82,9 +107,19 @@ function createQuestionresponse(cb) {
         cb);
 }
 
+function createUser(cb) {
+    async.series([
+        function (callback) {
+            userCreate('https://res.cloudinary.com/dojy9dmtd/image/upload/v1620832211/myphoto_sb25qb.jpg', 'Younghwan Cha', 'younghwan.cha@dayLogger.com', callback);
+        },
+    ],
+        cb);
+}
+
 async.series([
     createQuestions,
-    createQuestionresponse
+    createQuestionresponse,
+    createUser
 ],
 
 function(err, results) {
