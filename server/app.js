@@ -144,7 +144,8 @@ app.put('/api/user', wrapAsync(async function (req, res) {
         })
         await newuser.save();
     }
-    }));
+}));
+
 
 
 const handleValidationErr = err => {
